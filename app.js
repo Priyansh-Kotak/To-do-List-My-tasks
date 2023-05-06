@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const date = require(__dirname + "/date.js");
 const { log } = require("console");
 // const request = require()
 
@@ -34,16 +35,7 @@ app.post("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  var today = new Date();
-
-  var options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  };
-
-  day = today.toLocaleDateString("en-US", options);
-
+  let day = date.getdate();
   res.render("home", { kindOfDay: day, tasks: items, name: "Home List" });
 });
 
@@ -68,15 +60,7 @@ app.post("/home", (req, res) => {
 });
 
 app.get("/work", (req, res) => {
-  var today = new Date();
-
-  var options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  };
-
-  day = today.toLocaleDateString("en-US", options);
+  let day = date.getday();
 
   res.render("home", { name: "Work List", tasks: witems, kindOfDay: day });
 });
